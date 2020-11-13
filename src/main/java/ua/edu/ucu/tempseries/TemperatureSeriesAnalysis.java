@@ -39,7 +39,7 @@ public class TemperatureSeriesAnalysis {
         double avg = average();
         double std = 0;
         for (int i = 0; i < this.size; i++) {
-            std += Math.pow(this.series[0] - avg, 2);
+            std += Math.pow(this.series[i] - avg, 2);
         }
         return std/this.size;
     }
