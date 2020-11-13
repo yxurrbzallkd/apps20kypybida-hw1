@@ -92,7 +92,7 @@ public class TemperatureSeriesAnalysisTest {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expResult = 2.5;
 
-        double actualResult = seriesAnalysis.average();
+        double actualResult = seriesAnalysis.deviation();
         
         assertEquals(expResult, actualResult, 0.00001);        
     }
