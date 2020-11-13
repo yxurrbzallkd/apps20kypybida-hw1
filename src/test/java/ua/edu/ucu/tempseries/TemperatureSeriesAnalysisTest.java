@@ -7,7 +7,6 @@ import org.junit.Ignore;
 public class TemperatureSeriesAnalysisTest {
 
     @Test
-    @DisplayName(test)
     public void testAverageWithOneElementArray() {
         // setup input data and expected result
         double[] temperatureSeries = {-1.0};
