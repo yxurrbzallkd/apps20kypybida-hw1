@@ -227,7 +227,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] actualResult = seriesAnalysis.findTempsGreaterThen(8);
 
         // compare expected result with actual result
-        assertTrue(Arrays.equals(actualResult, expResult)); 
+        assertTrue(Arrays.equals(actualResult, temperatureSeries)); 
     }
 
     @Test
@@ -259,8 +259,8 @@ public class TemperatureSeriesAnalysisTest {
         double[] expResult = {5.0, 6.0};
 
         double[] actualResult = seriesAnalysis.findTempsGreaterThen(tempVal);
-        
-        assertTrue(Arrays.equals(actualResult, expResult));       
+
+        assertTrue(Arrays.equals(actualResult, expResult));
     }
 
     @Test
@@ -273,7 +273,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] actualResult = seriesAnalysis.findTempsGreaterThen(-3.0);
 
         // compare expected result with actual result
-        assertTrue(Arrays.equals(actualResult, expResult)); 
+        assertTrue(Arrays.equals(actualResult, temperatureSeries)); 
     }
 
 }
