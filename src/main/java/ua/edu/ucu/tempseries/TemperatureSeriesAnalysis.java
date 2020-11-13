@@ -20,35 +20,35 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double average() throws IllegalArgumentException {
-        if (this.empty()){
+        if (this.empty()) {
             throw new IllegalArgumentException("Empty series doesn't have an average");
         }
         double sum = 0;
-        for (int i = 0; i < this.size; i++){
+        for (int i = 0; i < this.size; i++) {
             sum += this.series[i];
         }
         return sum/this.size;
     }
 
     public double deviation() throws IllegalArgumentException {
-        if (this.empty()){
+        if (this.empty()) {
             throw new IllegalArgumentException("Empty series cann't have a standard deviation");
         }
         double avg = average();
         double std = 0;
-        for (int i = 0; i < this.size; i++){
+        for (int i = 0; i < this.size; i++) {
             std += Math.pow(this.series[0] - avg, 2);
         }
         return std/this.size;
     }
 
     public double min() throws IllegalArgumentException {
-        if (this.empty()){
+        if (this.empty()) {
             throw new IllegalArgumentException("Empty series can't have a standard deviation");
         }
         double min = this.series[0];
-        for (int i = 1; i < this.size; i++){
-            if (this.series[i] < min){
+        for (int i = 1; i < this.size; i++) {
+            if (this.series[i] < min) {
                 min = this.series[i];
             }
         }
@@ -56,12 +56,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double max() throws IllegalArgumentException {
-        if (this.empty()){
+        if (this.empty()) {
             throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
         }
         double max = this.series[0];
-        for (int i = 0; i < this.size; i++){
-            if (this.series[i] > max){
+        for (int i = 0; i < this.size; i++) {
+            if (this.series[i] > max) {
                 max = this.series[i];
             }
         }
@@ -77,12 +77,12 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
         }
         double closest = this.series[0];
-        for (int i = 1; i < this.size; i++){
+        for (int i = 1; i < this.size; i++) {
             if (Math.abs(this.series[i] - tempValue) < Math.abs(closest - tempValue)) {
                 closest = this.series[i];
             }
             else if (Math.abs(this.series[i] - tempValue) == Math.abs(closest-tempValue)) {
-                if (this.series[i] > closest){
+                if (this.series[i] > closest) {
                     closest = this.series[i];
                 }
             }
@@ -92,7 +92,7 @@ public class TemperatureSeriesAnalysis {
 
     private void expand() {
         double[] newSeries = new double[2*this.series.length];
-        for (int i = 0; i < this.size; i++){
+        for (int i = 0; i < this.size; i++) {
             newSeries[i] = this.series[i];
         }
         this.series = newSeries;
@@ -101,8 +101,8 @@ public class TemperatureSeriesAnalysis {
     public double[] findTempsLessThen(double tempValue) {
         double[] smaller = new double[this.size];
         int j = 0;
-        for (int i = 0; i < this.size; i++){
-            if (this.series[i] < tempValue){
+        for (int i = 0; i < this.size; i++) {
+            if (this.series[i] < tempValue) {
                 smaller[j] = this.series[i];
                 j += 1;
             }
@@ -113,8 +113,8 @@ public class TemperatureSeriesAnalysis {
     public double[] findTempsGreaterThen(double tempValue) {
         double[] larger = new double[this.size];
         int j = 0;
-        for (int i = 0; i < this.size; i++){
-            if (this.series[i] > tempValue){
+        for (int i = 0; i < this.size; i++) {
+            if (this.series[i] > tempValue) {
                 larger[j] = this.series[i];
                 j += 1;
             }
@@ -123,17 +123,17 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
-        if (empty()){
+        if (empty()) {
             throw new IllegalArgumentException("Can't provide statistics on empty series");
         }
         return new TempSummaryStatistics(this);
     }
 
     public int addTemps(double... temps) throws IllegalArgumentException {
-        if (empty()){
+        if (empty()) {
             throw new IllegalArgumentException("Can't provide statistics on an empty series");
         }
-        for (double t:temps){
+        for (double t:temps) {
             if (this.size > this.series.length - 1) {
                 expand();
             }
@@ -143,7 +143,7 @@ public class TemperatureSeriesAnalysis {
         return 1;
     }
     public String toString() throws IllegalArgumentException {
-        if (empty()){
+        if (empty()) {
             throw new IllegalArgumentException("Can't provide statistics on an empty series");
         }
         return "TempSeries "+Arrays.toString(this.series);
