@@ -1,5 +1,6 @@
 package ua.edu.ucu.tempseries;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
     private double[] series;
@@ -10,16 +11,17 @@ public class TemperatureSeriesAnalysis {
         this.size = 0;
     }
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        this.series = temperatureSeries;
-        this.size = temperatureSeries.length;
+    public TemperatureSeriesAnalysis(double[] temperatureSeries) throws InputMismatchException{
+        this.series = new double[1];
+        this.size = 0;
+        this.addTemps(temperatureSeries);
     }
 
     public boolean empty() {
         return this.size == 0;
     }
 
-    public double average() {
+    public double average() throws IllegalArgumentException {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -30,7 +32,7 @@ public class TemperatureSeriesAnalysis {
         return sum/this.size;
     }
 
-    public double deviation() {
+    public double deviation() throws IllegalArgumentException {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -42,7 +44,7 @@ public class TemperatureSeriesAnalysis {
         return std/this.size;
     }
 
-    public double min() {
+    public double min() throws IllegalArgumentException {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -55,7 +57,7 @@ public class TemperatureSeriesAnalysis {
         return min;
     }
 
-    public double max() {
+    public double max() throws IllegalArgumentException {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -68,12 +70,25 @@ public class TemperatureSeriesAnalysis {
         return max;
     }
 
-    public double findTempClosestToZero() {
-        System.out.println(findTempClosestToValue(0));
-        return findTempClosestToValue(0);
+    public double findTempClosestToZero() throws IllegalArgumentException {
+        if (this.empty()) {
+            throw new IllegalArgumentException("Empty series");
+        }
+        double closest = this.series[0];
+        for (int i = 1; i < this.size; i++) {
+            if (Math.abs(this.series[i]) < Math.abs(closest)) {
+                closest = this.series[i];
+            }
+            else if (Math.abs(this.series[i]) == Math.abs(closest)) {
+                if (this.series[i] > closest) {
+                    closest = this.series[i];
+                }
+            }
+        }
+        return closest;
     }
 
-    public double findTempClosestToValue(double tempValue) {
+    public double findTempClosestToValue(double tempValue) throws IllegalArgumentException{
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -81,11 +96,6 @@ public class TemperatureSeriesAnalysis {
         for (int i = 1; i < this.size; i++) {
             if (Math.abs(this.series[i] - tempValue) < Math.abs(closest - tempValue)) {
                 closest = this.series[i];
-            }
-            else if (Math.abs(this.series[i] - tempValue) == Math.abs(closest - tempValue)) {
-                if (this.series[i] > closest) {
-                    closest = this.series[i];
-                }
             }
         }
         return closest;
@@ -100,9 +110,6 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        if (this.empty()) {
-            throw new IllegalArgumentException("Empty series");
-        }
         double[] smaller = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++) {
@@ -115,9 +122,6 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        if (this.empty()) {
-            throw new IllegalArgumentException("Empty series");
-        }
         double[] larger = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++) {
@@ -129,27 +133,30 @@ public class TemperatureSeriesAnalysis {
         return Arrays.copyOf(larger, j);
     }
 
-    public TempSummaryStatistics summaryStatistics() {
+    public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
         if (empty()) {
             throw new IllegalArgumentException("Can't provide statistics on empty series");
         }
         return new TempSummaryStatistics(this);
     }
 
-    public int addTemps(double... temps) {
-        if (empty()) {
-            throw new IllegalArgumentException("Can't provide statistics on an empty series");
-        }
+    public int addTemps(double... temps) throws IllegalArgumentException {
         for (double t:temps) {
             if (this.size > this.series.length - 1) {
                 expand();
+            }
+            if (t < -273) {
+                throw new InputMismatchException("temperature below absolute zero");
             }
             this.series[this.size] = t;
             this.size += 1;
         }
         return 1;
     }
-    public String toString() {
-        return "TempSeries "+Arrays.toString(this.series);
+    public String toString() throws IllegalArgumentException {
+        if (empty()) {
+            throw new IllegalArgumentException("Empty series");
+        }
+        return "TempSeries "+Arrays.toString(Arrays.copyOf(this.series, this.size));
     }
 }
