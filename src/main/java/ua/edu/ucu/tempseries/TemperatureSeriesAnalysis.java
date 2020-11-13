@@ -1,4 +1,5 @@
 package ua.edu.ucu.tempseries;
+import java.util.Arrays;
 
 public class TemperatureSeriesAnalysis {
     private double[] series;
@@ -27,7 +28,7 @@ public class TemperatureSeriesAnalysis {
         }
         double sum = 0;
         for (int i = 0; i < this.size; i++){
-            sum += this.series[0];
+            sum += this.series[i];
         }
         return sum/this.size;
     }
@@ -50,8 +51,8 @@ public class TemperatureSeriesAnalysis {
         }
         double min = this.series[0];
         for (int i = 1; i < this.size; i++){
-            if (this.series[0] < min){
-                min = this.series[0];
+            if (this.series[i] < min){
+                min = this.series[i];
             }
         }
         return min;
@@ -63,8 +64,8 @@ public class TemperatureSeriesAnalysis {
         }
         double max = this.series[0];
         for (int i = 0; i < this.size; i++){
-            if (this.series[0] > max){
-                max = this.series[0];
+            if (this.series[i] > max){
+                max = this.series[i];
             }
         }
         return max;
@@ -79,13 +80,13 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
         }
         double closest = this.series[0];
-        for (int i = 0; i < this.size; i++){
-            if (Math.abs(this.series[0]-tempValue) < Math.abs(closest-tempValue)){
-                closest = this.series[0];
+        for (int i = 1; i < this.size; i++){
+            if (Math.abs(this.series[i]-tempValue) < Math.abs(closest-tempValue)){
+                closest = this.series[i];
             }
-            else if (Math.abs(this.series[0]-tempValue) == Math.abs(closest-tempValue)){
-                if (this.series[0] > closest){
-                    closest = this.series[0];
+            else if (Math.abs(this.series[i]-tempValue) == Math.abs(closest-tempValue)){
+                if (this.series[i] > closest){
+                    closest = this.series[i];
                 }
             }
         }
@@ -102,7 +103,7 @@ public class TemperatureSeriesAnalysis {
 
     private double[] cutDouble(double[] arr, int size){
         double[] result = new double[size];
-        for (int k = 0; k < size; size++){
+        for (int k = 0; k < size; k++){
             result[k] = arr[k];
         }
         return result;
@@ -112,7 +113,7 @@ public class TemperatureSeriesAnalysis {
         double[] smaller = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++){
-            if (this.series[0] < tempValue){
+            if (this.series[i] < tempValue){
                 smaller[j] = this.series[i];
                 j += 1;
             }
@@ -124,7 +125,7 @@ public class TemperatureSeriesAnalysis {
         double[] larger = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++){
-            if (this.series[0] < tempValue){
+            if (this.series[i] > tempValue){
                 larger[j] = this.series[i];
                 j += 1;
             }
@@ -156,11 +157,6 @@ public class TemperatureSeriesAnalysis {
         if (empty()){
             throw new IllegalArgumentException("Can't provide statistics on an empty series");
         }
-        String s = "TempSeries [";
-        for (int i = 0; i < this.size; i++){
-            s += this.series[i]+", ";
-        }
-        s += "]";
-        return s;
+        return "TempSeries "+Arrays.toString(this.series);
     }
 }
