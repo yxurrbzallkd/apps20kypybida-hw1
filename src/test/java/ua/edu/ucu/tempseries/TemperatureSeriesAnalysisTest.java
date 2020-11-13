@@ -18,7 +18,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testAddAbsoluteZeroError() {
         double[] temperatureSeries = {1, 4, 0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        ts.add(-274.0);
+        seriesAnalysis.add(-274.0);
     }
 
     @Test
