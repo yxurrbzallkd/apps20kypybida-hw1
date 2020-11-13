@@ -1,5 +1,6 @@
 package ua.edu.ucu.tempseries;
 
+import java.util.Arrays;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -172,8 +173,8 @@ public class TemperatureSeriesAnalysisTest {
         double[] expResult = {-5.0, 1.0, 0.2, -1.0};
 
         double[] actualResult = seriesAnalysis.findTempsLessThen(tempVal);
-        
-        assertEquals(expResult, actualResult, 0.00001);        
+
+        assertTrue(Arrays.equals(actualResult, expResult));        
     }
 
     @Ignore
@@ -196,6 +197,6 @@ public class TemperatureSeriesAnalysisTest {
 
         double[] actualResult = seriesAnalysis.findTempsGreaterThen(tempVal);
         
-        assertEquals(expResult, actualResult, 0.00001);        
+        assertTrue(Arrays.equals(actualResult, expResult));       
     }
 }
