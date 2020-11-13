@@ -217,18 +217,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.findTempsLessThen(0);
     }
 
-    @Test
-    public void testFindTempsLessThenWithFloorElement() {
-        // setup input data and expected result
-        double[] temperatureSeries = {-1.0, 2.0, 4.0, 0};
-        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-
-        // call tested method
-        double[] actualResult = seriesAnalysis.findTempsGreaterThen(8);
-
-        // compare expected result with actual result
-        assertTrue(Arrays.equals(actualResult, temperatureSeries)); 
-    }
 
     @Test
     public void testFindTempsLessThen() {
@@ -240,6 +228,19 @@ public class TemperatureSeriesAnalysisTest {
         double[] actualResult = seriesAnalysis.findTempsLessThen(tempVal);
 
         assertTrue(Arrays.equals(actualResult, expResult));        
+    }
+
+    @Test
+    public void testFindTempsLessThenWithFloorElement() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0, 2.0, 4.0, 0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        // call tested method
+        double[] actualResult = seriesAnalysis.findTempsLessThen(8);
+
+        // compare expected result with actual result
+        assertTrue(Arrays.equals(actualResult, temperatureSeries)); 
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -266,7 +267,7 @@ public class TemperatureSeriesAnalysisTest {
     @Test
     public void testFindTempsGreaterThenWithFloorElement() {
         // setup input data and expected result
-        double[] temperatureSeries = {-1.0, 2.0, 4.0, 0};
+        double[] temperatureSeries = {-1.0, 2.0, 4.0, 0.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
         // call tested method
