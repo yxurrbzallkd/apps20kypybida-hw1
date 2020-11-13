@@ -16,7 +16,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public boolean empty() {
-        return this.series == null;
+        return this.size == 0;
     }
 
     public double average() throws IllegalArgumentException {
