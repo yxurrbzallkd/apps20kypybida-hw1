@@ -21,7 +21,7 @@ public class TemperatureSeriesAnalysis {
 
     public double average() throws IllegalArgumentException {
         if (this.empty()) {
-            throw new IllegalArgumentException("Empty series doesn't have an average");
+            throw new IllegalArgumentException("Empty series");
         }
         double sum = 0;
         for (int i = 0; i < this.size; i++) {
@@ -32,7 +32,7 @@ public class TemperatureSeriesAnalysis {
 
     public double deviation() throws IllegalArgumentException {
         if (this.empty()) {
-            throw new IllegalArgumentException("Empty series cann't have a standard deviation");
+            throw new IllegalArgumentException("Empty series");
         }
         double avg = average();
         double std = 0;
@@ -44,7 +44,7 @@ public class TemperatureSeriesAnalysis {
 
     public double min() throws IllegalArgumentException {
         if (this.empty()) {
-            throw new IllegalArgumentException("Empty series can't have a standard deviation");
+            throw new IllegalArgumentException("Empty series");
         }
         double min = this.series[0];
         for (int i = 1; i < this.size; i++) {
@@ -57,7 +57,7 @@ public class TemperatureSeriesAnalysis {
 
     public double max() throws IllegalArgumentException {
         if (this.empty()) {
-            throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
+            throw new IllegalArgumentException("Empty series");
         }
         double max = this.series[0];
         for (int i = 0; i < this.size; i++) {
@@ -74,14 +74,14 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) throws IllegalArgumentException{
         if (this.empty()) {
-            throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
+            throw new IllegalArgumentException("Empty series");
         }
         double closest = this.series[0];
         for (int i = 1; i < this.size; i++) {
             if (Math.abs(this.series[i] - tempValue) < Math.abs(closest - tempValue)) {
                 closest = this.series[i];
             }
-            else if (Math.abs(this.series[i] - tempValue) == Math.abs(closest-tempValue)) {
+            else if (Math.abs(this.series[i] - tempValue) == Math.abs(closest - tempValue)) {
                 if (this.series[i] > closest) {
                     closest = this.series[i];
                 }
@@ -144,7 +144,7 @@ public class TemperatureSeriesAnalysis {
     }
     public String toString() throws IllegalArgumentException {
         if (empty()) {
-            throw new IllegalArgumentException("Can't provide statistics on an empty series");
+            throw new IllegalArgumentException("Empty series");
         }
         return "TempSeries "+Arrays.toString(this.series);
     }
