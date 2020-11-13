@@ -125,7 +125,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testMin() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        double expResult = -1;
+        double expResult = -5.0;
 
         double actualResult = seriesAnalysis.min();
         
@@ -218,7 +218,7 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     @Test
-    public void testFindTempsLLessThenWithFloorElement() {
+    public void testFindTempsLessThenWithFloorElement() {
         // setup input data and expected result
         double[] temperatureSeries = {-1.0, 2.0, 4.0, 0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
