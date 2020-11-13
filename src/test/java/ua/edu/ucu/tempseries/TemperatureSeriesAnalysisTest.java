@@ -284,6 +284,6 @@ public class TemperatureSeriesAnalysisTest {
 
         String actualResult = seriesAnalysis.summaryStatistics().toString();
         
-        assertEquals("Average: 2.5 Deviation: 1.25 Min: 1.0 Max: 4.0", actualResult, 0.00001);
+        assertEquals("Average: 2.5 Deviation: 1.25 Min: 1.0 Max: 4.0", actualResult);
     }
 }
