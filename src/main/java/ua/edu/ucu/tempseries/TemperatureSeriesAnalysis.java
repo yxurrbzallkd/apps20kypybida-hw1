@@ -19,7 +19,7 @@ public class TemperatureSeriesAnalysis {
         return this.size == 0;
     }
 
-    public double average() throws IllegalArgumentException {
+    public double average() {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -30,7 +30,7 @@ public class TemperatureSeriesAnalysis {
         return sum/this.size;
     }
 
-    public double deviation() throws IllegalArgumentException {
+    public double deviation() {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -42,7 +42,7 @@ public class TemperatureSeriesAnalysis {
         return std/this.size;
     }
 
-    public double min() throws IllegalArgumentException {
+    public double min() {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -55,7 +55,7 @@ public class TemperatureSeriesAnalysis {
         return min;
     }
 
-    public double max() throws IllegalArgumentException {
+    public double max() {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -68,11 +68,11 @@ public class TemperatureSeriesAnalysis {
         return max;
     }
 
-    public double findTempClosestToZero() throws IllegalArgumentException {
+    public double findTempClosestToZero() {
         return findTempClosestToValue(0);
     }
 
-    public double findTempClosestToValue(double tempValue) throws IllegalArgumentException{
+    public double findTempClosestToValue(double tempValue) {
         if (this.empty()) {
             throw new IllegalArgumentException("Empty series");
         }
@@ -122,14 +122,14 @@ public class TemperatureSeriesAnalysis {
         return Arrays.copyOf(larger, j);
     }
 
-    public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
+    public TempSummaryStatistics summaryStatistics() {
         if (empty()) {
             throw new IllegalArgumentException("Can't provide statistics on empty series");
         }
         return new TempSummaryStatistics(this);
     }
 
-    public int addTemps(double... temps) throws IllegalArgumentException {
+    public int addTemps(double... temps) {
         if (empty()) {
             throw new IllegalArgumentException("Can't provide statistics on an empty series");
         }
@@ -142,7 +142,7 @@ public class TemperatureSeriesAnalysis {
         }
         return 1;
     }
-    public String toString() throws IllegalArgumentException {
+    public String toString() {
         if (empty()) {
             throw new IllegalArgumentException("Empty series");
         }
