@@ -121,7 +121,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double tempVal = -2;
-        double expResult = 1.0;
+        double expResult = -1.0;
 
         double actualResult = seriesAnalysis.findTempClosestToValue(tempVal);
         
