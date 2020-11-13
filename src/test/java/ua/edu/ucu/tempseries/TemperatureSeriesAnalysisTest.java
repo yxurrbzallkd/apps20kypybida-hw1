@@ -21,7 +21,6 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void testAverageWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -31,7 +30,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.average();
     }
 
-    @Ignore
     @Test
     public void testAverage() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
@@ -97,7 +95,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.average();
     }
 
-    @Ignore
     @Test
     public void testMax() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
@@ -109,7 +106,7 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
-    @Ignore
+
     @Test(expected = IllegalArgumentException.class)
     public void testfindTempClosestToValueWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -119,7 +116,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.findTempClosestToValue(0);
     }
 
-    @Ignore
     @Test
     public void testfindTempClosestToValue() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
@@ -132,7 +128,6 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void testfindTempClosestToZeroWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -142,7 +137,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.findTempClosestToZero();
     }
 
-    @Ignore
     @Test
     public void testfindTempClosestToZero() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
@@ -154,7 +148,6 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void testFindTempsLessThenWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -164,7 +157,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.findTempsLessThen(0);
     }
 
-    @Ignore
     @Test
     public void testFindTempsLessThen() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
@@ -177,7 +169,6 @@ public class TemperatureSeriesAnalysisTest {
         assertTrue(Arrays.equals(actualResult, expResult));        
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void testFindTempsGreaterThenWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -187,7 +178,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.findTempsGreaterThen(0);
     }
 
-    @Ignore
     @Test
     public void testFindTempsGreaterThen() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
