@@ -99,6 +99,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
+        if (this.empty()) {
+            throw new IllegalArgumentException("Empty series");
+        }
         double[] smaller = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++) {
@@ -111,6 +114,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
+        if (this.empty()) {
+            throw new IllegalArgumentException("Empty series");
+        }
         double[] larger = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++) {
@@ -143,9 +149,6 @@ public class TemperatureSeriesAnalysis {
         return 1;
     }
     public String toString() {
-        if (empty()) {
-            throw new IllegalArgumentException("Empty series");
-        }
         return "TempSeries "+Arrays.toString(this.series);
     }
 }
