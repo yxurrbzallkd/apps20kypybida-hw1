@@ -25,7 +25,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testCInitializeSeries() {
         double[] temperatureSeries = {-5.0, -2.0, 3.0, 0, 4.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        assertEquals("TemperatureSeries [-5.0, -2.0, 3.0, 0, 4.0]", seriesAnalysis.toString());
+        assertEquals("TempSeries [-5.0, -2.0, 3.0, 0, 4.0]", seriesAnalysis.toString());
     }
 
     @Test
