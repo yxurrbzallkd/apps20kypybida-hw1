@@ -69,7 +69,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToZero() {
-        System.out.println(findTempClosestToValue(0););
+        System.out.println(findTempClosestToValue(0));
         return findTempClosestToValue(0);
     }
 
