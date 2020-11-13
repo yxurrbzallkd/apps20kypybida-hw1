@@ -1,25 +1,22 @@
 package ua.edu.ucu.tempseries;
 import java.util.Arrays;
 
-public class TemperatureSeriesAnalysis {
+public class TemperatureSeriesAnalysis{
     private double[] series;
     private int size;
 
-    public TemperatureSeriesAnalysis() {
+    public TemperatureSeriesAnalysis(){
         this.series = new double[1];
         this.size = 0;
     }
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+    public TemperatureSeriesAnalysis(double[] temperatureSeries){
         this.series = temperatureSeries;
         this.size = temperatureSeries.length;
     }
 
     public boolean empty(){
-        if (this.series == null) {
-            return true;
-        }
-        return false;
+        return this.series == null;
     }
 
     public double average() throws IllegalArgumentException{
@@ -35,7 +32,7 @@ public class TemperatureSeriesAnalysis {
 
     public double deviation() throws IllegalArgumentException{
         if (this.empty()){
-            throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
+            throw new IllegalArgumentException("Empty series cann't have a standard deviation");
         }
         double avg = average();
         double std = 0;
@@ -47,7 +44,7 @@ public class TemperatureSeriesAnalysis {
 
     public double min() throws IllegalArgumentException{
         if (this.empty()){
-            throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
+            throw new IllegalArgumentException("Empty series can't have a standard deviation");
         }
         double min = this.series[0];
         for (int i = 1; i < this.size; i++){
@@ -76,15 +73,15 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToValue(double tempValue) throws IllegalArgumentException{
-        if (this.empty()){
+        if (this.empty()) {
             throw new IllegalArgumentException("Empty series doesn't have a standard deviation");
         }
         double closest = this.series[0];
         for (int i = 1; i < this.size; i++){
-            if (Math.abs(this.series[i]-tempValue) < Math.abs(closest-tempValue)){
+            if (Math.abs(this.series[i] - tempValue) < Math.abs(closest - tempValue)){
                 closest = this.series[i];
             }
-            else if (Math.abs(this.series[i]-tempValue) == Math.abs(closest-tempValue)){
+            else if (Math.abs(this.series[i] - tempValue) == Math.abs(closest-tempValue)){
                 if (this.series[i] > closest){
                     closest = this.series[i];
                 }
@@ -101,15 +98,7 @@ public class TemperatureSeriesAnalysis {
         this.series = newSeries;
     }
 
-    private double[] cutDouble(double[] arr, int size){
-        double[] result = new double[size];
-        for (int k = 0; k < size; k++){
-            result[k] = arr[k];
-        }
-        return result;
-    }
-
-    public double[] findTempsLessThen(double tempValue) {
+    public double[] findTempsLessThen(double tempValue){
         double[] smaller = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++){
@@ -118,10 +107,10 @@ public class TemperatureSeriesAnalysis {
                 j += 1;
             }
         }
-        return cutDouble(smaller, j);
+        return Arrays.copyOf(smaller, j);
     }
 
-    public double[] findTempsGreaterThen(double tempValue) {
+    public double[] findTempsGreaterThen(double tempValue){
         double[] larger = new double[this.size];
         int j = 0;
         for (int i = 0; i < this.size; i++){
@@ -130,12 +119,12 @@ public class TemperatureSeriesAnalysis {
                 j += 1;
             }
         }
-        return cutDouble(larger, j);
+        return Arrays.copyOf(larger, j);
     }
 
     public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException{
         if (empty()){
-            throw new IllegalArgumentException("Can't provide statistics on an empty series");
+            throw new IllegalArgumentException("Can't provide statistics on empty series");
         }
         return new TempSummaryStatistics(this);
     }
