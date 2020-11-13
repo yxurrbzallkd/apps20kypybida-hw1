@@ -277,4 +277,13 @@ public class TemperatureSeriesAnalysisTest {
         assertTrue(Arrays.equals(actualResult, temperatureSeries)); 
     }
 
+    @Test
+    public void testSummaryStatistics() {
+        double[] temperatureSeries = {1, 2, 3, 4};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        String actualResult = seriesAnalysis.summaryStatistics().toString();
+        
+        assertEquals("Average: 2.5 Deviation: 1.25 Min: 1.0 Max: 4.0", actualResult, 0.00001);
+    }
 }
