@@ -1,11 +1,32 @@
 package ua.edu.ucu.tempseries;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Ignore;
 
 public class TemperatureSeriesAnalysisTest {
+    @Test(expected = InputMismatchException.class)
+    public void testCreateWithAbsoluteZeroError() {
+        double[] temperatureSeries = {1, 4, -280};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+    }
+
+    @Test(expected = InputMismatchException.class)
+    public void testAddAbsoluteZeroError() {
+        double[] temperatureSeries = {1, 4, 0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        ts.add(-274.0);
+    }
+
+    @Test
+    public void testCInitializeSeries() {
+        double[] temperatureSeries = {-5.0, -2.0, 3.0, 0, 4.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        assertEquals("TemperatureSeries [-5.0, -2.0, 3.0, 0, 4.0]", seriesAnalysis.toString());
+    }
 
     @Test
     public void testAverageWithOneElementArray() {
@@ -41,7 +62,20 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
     
-    @Ignore
+    @Test
+    public void testDeviationWithOneElementArray() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 0.0;
+
+        // call tested method
+        double actualResult = seriesAnalysis.deviation();
+
+        // compare expected result with actual result
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testDeviationWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -51,7 +85,7 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.deviation();
     }
 
-    @Ignore
+
     @Test
     public void testDeviation() {
         double[] temperatureSeries = {-2, -1, 2, 1};
@@ -63,7 +97,20 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
-    @Ignore
+    @Test
+    public void testMinWithOneElementArray() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = -1.0;
+
+        // call tested method
+        double actualResult = seriesAnalysis.min();
+
+        // compare expected result with actual result
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testMinWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -73,7 +120,7 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.min();
     }
 
-    @Ignore
+
     @Test
     public void testMin() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
@@ -85,7 +132,20 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
-    @Ignore
+    @Test
+    public void testMaxWithOneElementArray() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = -1.0;
+
+        // call tested method
+        double actualResult = seriesAnalysis.max();
+
+        // compare expected result with actual result
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testMaxWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -120,7 +180,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testfindTempClosestToValue() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        double tempVal = -2;
+        double tempVal = -2.0;
         double expResult = -1.0;
 
         double actualResult = seriesAnalysis.findTempClosestToValue(tempVal);
@@ -158,6 +218,19 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     @Test
+    public void testFindTempsLLessThenWithFloorElement() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0, 2.0, 4.0, 0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        // call tested method
+        double[] actualResult = seriesAnalysis.findTempsGreaterThen(8);
+
+        // compare expected result with actual result
+        assertTrue(Arrays.equals(actualResult, expResult)); 
+    }
+
+    @Test
     public void testFindTempsLessThen() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0, 6.0, 0.2, -1.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
@@ -189,4 +262,18 @@ public class TemperatureSeriesAnalysisTest {
         
         assertTrue(Arrays.equals(actualResult, expResult));       
     }
+
+    @Test
+    public void testFindTempsGreaterThenWithFloorElement() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0, 2.0, 4.0, 0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        // call tested method
+        double[] actualResult = seriesAnalysis.findTempsGreaterThen(-3.0);
+
+        // compare expected result with actual result
+        assertTrue(Arrays.equals(actualResult, expResult)); 
+    }
+
 }
