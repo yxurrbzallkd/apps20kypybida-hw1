@@ -137,7 +137,7 @@ public class TemperatureSeriesAnalysis {
         if (empty()){
             throw new IllegalArgumentException("Can't provide statistics on an empty series");
         }
-        return new TempSummaryStatistics(average(), deviation(), min(), max());
+        return new TempSummaryStatistics(this);
     }
 
     public int addTemps(double... temps) throws IllegalArgumentException{
